@@ -1,0 +1,39 @@
+#card{
+  width: 400px;
+  height: 600px;
+  background-color: rgb(70, 70, 70);
+  border-radius: 16px;
+  border: 3px solid white;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#card-top, #card-bottom{
+  width: 100%;
+  height: 50%;
+}
+
+#card:hover{
+  pointer-events: none;
+}
+
+#dark-bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+#dark-bg:hover{
+  cursor: pointer;
+}

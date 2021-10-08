@@ -1,0 +1,16 @@
+#info{
+  background-color: darkgoldenrod;
+  margin: 16px;
+  padding: 16px;
+  max-height: 100%;
+}
+
+#info h1{
+  margin-top: 0;
+  font-size: 1.4em;
+}
+
+#info em {
+  font-size: 0.9em;
+}
+
