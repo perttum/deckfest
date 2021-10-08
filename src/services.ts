@@ -6,7 +6,6 @@ const baseUrl = 'https://www.ringsdb.com/api/public';
 export const getDeck = async (deckId: string) => {
   try{
     const deckFromApi = await axios.get<Deck>(`${baseUrl}/decklist/${deckId}`);
-    console.log('deckFromApi: ', deckFromApi);
     const heroIds = Object.keys(deckFromApi.data.heroes);
     return heroIds;
   } catch(error){

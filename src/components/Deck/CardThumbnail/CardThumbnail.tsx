@@ -22,8 +22,8 @@ const CardThumbnail = ({ id }: { id: string }) => {
     <Fragment>
       {(showInfo && hero) && <Card hero={hero} closeCardHandler={() => setShowInfo(false)}/>}
       
-      <div className="hero-card" onClick={() => setShowInfo(!showInfo)}>
-        {hero && <img src={`https://www.ringsdb.com${hero.imagesrc}`} alt={`${hero?.name}`} />}
+      <div className="hero-card" onClick={() => setShowInfo(!showInfo)} data-testid={id}>
+        {hero && <img src={`https://www.ringsdb.com${hero.imagesrc}`} alt={`${hero.name}`} />}
       </div>
       
     </Fragment>

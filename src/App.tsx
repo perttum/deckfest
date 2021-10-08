@@ -20,12 +20,10 @@ function App() {
   const [searchInput, setSearchInput] = useState<string>('');
   
   // Updates currentHeroIds state (.ie looks for a deck by id)
-  const submitSearch = async (event: React.FormEvent<HTMLButtonElement>) => {
-    
+  const submitSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try{
       const newDeck = await getDeck(searchInput);
-      console.log('newDeck: ', newDeck);
       if(newDeck.length === 0){
         // There was something wrong with the call. Store searchInput value to falseId.
         setFalseId(searchInput);
@@ -35,7 +33,7 @@ function App() {
       } else {
         // Deck holds some cards. It's ok.
         setCurrentHeroIds(newDeck);
-        
+
         // Clear falseId and error if needed.
         falseId && setFalseId('');
         error && setError(false);
