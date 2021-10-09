@@ -12,6 +12,7 @@ const Search = ({ submit, onChange, value }: Props) => {
     <div id="search">
       <form onSubmit={submit}>
         <label htmlFor="deck-id">Insert deck id:</label>
+        
         <input
           type="text"
           name="deck-id"

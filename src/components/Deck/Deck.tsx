@@ -1,6 +1,6 @@
-import React, { MouseEvent, useState } from "react";
-import CardThumbnail from "./CardThumbnail/CardThumbnail";
-import "./Deck.css";
+import React, { MouseEvent, useState } from 'react';
+import CardThumbnail from './CardThumbnail/CardThumbnail';
+import './Deck.css';
 import { getHero } from '../../services';
 import Card from './Card/Card';
 
@@ -20,7 +20,11 @@ const Deck = ({ ids }: Props ) => {
   const clickThumbnail = async (event: MouseEvent<HTMLElement>) => {
     const newHero = await fetchHero(event.currentTarget.id);
     const newCard = newHero && <Card hero={newHero} closeCardHandler={closeCardHandler}/>;
-    newCard && setCard(newCard);
+    if(newCard){
+      setCard(newCard);
+      // Disable scroll when card is shown
+      document.body.style.overflow = 'hidden';
+    }
   };
 
   // Fetch new hero for inspected <Card/>
@@ -35,6 +39,8 @@ const Deck = ({ ids }: Props ) => {
 
   const closeCardHandler = () => {
     setCard(null);
+    // Reactive scroll
+    document.body.style.overflow = 'unset';
   };
 
   const displayCards = ids && ids.map(currentHeroId => createCardThumbnail(currentHeroId));

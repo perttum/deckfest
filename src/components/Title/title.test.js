@@ -5,6 +5,5 @@ import Title from './Title';
 
 test('Title is rendered', () => {
   const component = render(<Title/>);
-
   expect(component.container).toHaveTextContent('DeckFest Unlimited');
 });
