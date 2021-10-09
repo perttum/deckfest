@@ -1,31 +1,32 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Hero } from '../../../types';
-import Card from '../Card/Card';
 import './CardThumbnail.css';
 import { getHero } from '../../../services';
 
-const CardThumbnail = ({ id }: { id: string }) => {
+type Props = {
+  id: string,
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
+};
+
+const CardThumbnail = ({ id, onClick }: Props) => {
   
   const [hero, setHero] = useState<Hero | null>(null);
-  const [showInfo, setShowInfo] = useState(false);
   
   useEffect(() => {
+    let mounted = true;
     const fetchHeroData = async () => {
       const hero = await getHero(id);
-      setHero(hero);
+      mounted && setHero(hero);
     };
     void fetchHeroData();
+    return () => { mounted = false; };
   }, []);
   
   return(
-    
     <Fragment>
-      {(showInfo && hero) && <Card hero={hero} closeCardHandler={() => setShowInfo(false)}/>}
-      
-      <div className="hero-card" onClick={() => setShowInfo(!showInfo)} data-testid={id}>
+      <div id={id} className="hero-card" onClick={onClick} data-testid={id}>
         {hero && <img src={`https://www.ringsdb.com${hero.imagesrc}`} alt={`${hero.name}`} />}
       </div>
-      
     </Fragment>
   );
 };

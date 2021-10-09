@@ -13,23 +13,24 @@ function App() {
   
   // Show or not 'Deck not found' error.
   const [error, setError] = useState(false);
-  // FalseId (ie. no deck with given id) is passed to Error comp to render it for the unlucky user.
+  // FalseId (ie. no deck found with this id) is passed to Error comp to display it.
   const [falseId, setFalseId] = useState('');
   
-  // Search is controlled/handeled from this component
+  // Search input is controlled from this component
   const [searchInput, setSearchInput] = useState<string>('');
   
-  // Updates currentHeroIds state (.ie looks for a deck by id)
+  // Updates currentHeroIds state (ie. looks for a deck by id)
   const submitSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try{
       const newDeck = await getDeck(searchInput);
       if(newDeck.length === 0){
-        // There was something wrong with the call. Store searchInput value to falseId.
+        // Deck is empty. Something went wrong. Store searchInput value to falseId.
         setFalseId(searchInput);
         // And show error notification.
         setError(true);
-        setCurrentHeroIds([]);
+        // Clear current ids if needed
+        currentHeroIds.length > 0 && setCurrentHeroIds([]);
       } else {
         // Deck holds some cards. It's ok.
         setCurrentHeroIds(newDeck);

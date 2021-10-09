@@ -6,10 +6,11 @@ const baseUrl = 'https://www.ringsdb.com/api/public';
 export const getDeck = async (deckId: string) => {
   try{
     const deckFromApi = await axios.get<Deck>(`${baseUrl}/decklist/${deckId}`);
+    console.log(deckFromApi);
     const heroIds = Object.keys(deckFromApi.data.heroes);
     return heroIds;
-  } catch(error){
-    console.log('getDeck error: ', error);
+  } catch(err){
+    console.log(`getDeck error with id: ${deckId}` , err);
   }
   return [];
 };
@@ -35,7 +36,7 @@ export const getHero = async (id: string) => {
     return hero;
 
   } catch (err){
-    console.log(err);
+    console.log('getHero error: ', err);
     return null;
   }
 };

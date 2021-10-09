@@ -2,7 +2,7 @@ import React from 'react';
 import './Search.css';
 
 type Props = {
-  submit: (event: React.FormEvent<HTMLFormElement>) => void;
+  submit: (e: React.FormEvent<HTMLFormElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string
 };
@@ -17,6 +17,7 @@ const Search = ({ submit, onChange, value }: Props) => {
           name="deck-id"
           onChange={onChange}
           value={value}
+          data-testid="search-input"
         />
         <button type="submit">Search</button>
       </form>
